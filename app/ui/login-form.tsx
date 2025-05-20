@@ -15,10 +15,10 @@ import { useSearchParams } from 'next/navigation';
 export default function LoginForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
-  const [errorMessage, formAction, isPending] = useActionState(
+
+  const [errorMessage, formAction] = useActionState(
     authenticate,
-    undefined,
-    { isPending: true }
+    undefined
   );
 
   return (
@@ -69,7 +69,7 @@ export default function LoginForm() {
           </div>
         </div>
         <input type="hidden" name="redirectTo" value={callbackUrl} />
-        <Button className="mt-4 w-full" aria-disabled={isPending}>
+        <Button className="mt-4 w-full">
           Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
         </Button>
         <div
